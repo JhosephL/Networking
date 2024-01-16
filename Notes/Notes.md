@@ -1,30 +1,4 @@
 
-
-
-[comment]: <> (HTML Specifications for PDF exportation)
-
-
-
-<head>
-    <style>
-        h1 {
-            font-weight: bold;
-        }
-        h2 {
-            font-weight: 700;
-        }
-        h3 {
-            font-weight: 700;
-        }
-    </style>
-</head>
-
-
-
-[comment]: <> (BEGINNING OF MD FILE)
-
-
-
 <br>
 <h1 align="center">
     CISCO COMMANDS
@@ -60,7 +34,6 @@
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -92,9 +65,6 @@
     vtp password <password string line>
 
 
-<div style='page-break-after: always'></div>
-
-
 ## Switch client
 
 1). Get in enable configuration.
@@ -121,7 +91,6 @@
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -159,9 +128,6 @@
     no shutdown
 
 
-<div style='page-break-after: always'></div>
-
-
 ## Switch
 
 1). Get in enable configuration.
@@ -193,8 +159,6 @@
 5.3). Prevent the interface from going out.
 
     no shutdown
-    
-<div style='page-break-after: always'></div>
 
 6). Identify access ports.
 
@@ -221,7 +185,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -244,7 +207,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -279,7 +241,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -304,8 +265,6 @@ Configure IP address options and fields.
 
     network <network IP> <network IP's wildcard> area <#>
     
-<div style='page-break-after: always'></div>
-
 ### Optional
 
 1). Get in enable configuration.
@@ -326,7 +285,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -403,7 +361,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -478,7 +435,6 @@ Configure IP address options and fields.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -518,7 +474,6 @@ Configure DNS' IP address.
 
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -598,7 +553,6 @@ Configure DNS' IP address.
     
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -625,8 +579,6 @@ Configure DNS' IP address.
 
     access-list <ID # [100;199]> <options> <protocol> <Source's IP address> <Source's wildcard of IP address> (eq <port>) <Destination's IP address> <Destination's wildcard of IP address> (eq <port>)
 
-<div style='page-break-after: always'></div>
-    
 4). Assign an access list to a port.
 
 4.1). Get in interface configuration.
@@ -647,7 +599,6 @@ Configure DNS' IP address.
     
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -674,7 +625,6 @@ Configure DNS' IP address.
     
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -707,8 +657,6 @@ Configure DNS' IP address.
 
     password <password string line>
 
-<div style='page-break-after: always'></div>
-    
 3.3). Set login settings with VTY credentials, with no extra options.
 
 3.3.1). Set no login.
@@ -734,9 +682,6 @@ It is possible to choose another technology. However, since VTY is a virtual ter
 5). Define password configuration for the device.
 
     enable secret (<options>) <password string line>
-
-
-<div style='page-break-after: always'></div>
 
 
 ## PC
@@ -765,7 +710,6 @@ It is possible to choose another technology. However, since VTY is a virtual ter
     
 
 
-<div style='page-break-after: always'></div>
 
 
 
@@ -796,8 +740,6 @@ This configuration is up to DNS resolver configuration. E.g. "cisco.com".
 
     username <username string line> privilege <user privilege level #> secret (<options>) <password string line>
     
-<div style='page-break-after: always'></div>
-
 7). Define security keys.
 
     crypto key generate rsa
@@ -827,8 +769,6 @@ This configuration is up to DNS resolver configuration. E.g. "cisco.com".
 9.1.2). Set login settings for local authentication (with router's credentials).
 
     login local
-
-<div style='page-break-after: always'></div>
 
 10). Get in interface configuration.
 
