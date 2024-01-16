@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<head>
+    <style>
+        h1 {
+            font-weight: bold;
+        }
+        h2 {
+            font-weight: 700;
+        }
+        h3 {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<br>
+<h1 align="center">
+    CISCO COMMANDS
+</h1>
+<br>
+<h1 id="ip">IP</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Create a VLAN per sub-interface.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;
+</code></pre>
+<p>4). Assign an IP address.</p>
+<pre><code>ip address &lt;IP address&gt; &lt;IP address' net-mask&gt;
+</code></pre>
+<p>5). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="vtp">VTP</h1>
+<h2 id="switch-server">Switch server</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Configure VTP mode.</p>
+<pre><code>vtp mode server
+</code></pre>
+<p>4). Configure VTP domain.</p>
+<pre><code>vtp domain &lt;domain's name&gt;
+</code></pre>
+<h3 id="optional">Optional</h3>
+<p>*). Configure VTP password.</p>
+<pre><code>vtp password &lt;password string line&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h2 id="switch-client">Switch client</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Configure VTP mode.</p>
+<pre><code>vtp mode client
+</code></pre>
+<p>4). Configure VTP domain.</p>
+<pre><code>vtp domain &lt;domain's name&gt;
+</code></pre>
+<h3 id="optional">Optional</h3>
+<p>*). Configure VTP password.</p>
+<pre><code>vtp password &lt;password string line&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="vlan">VLAN</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Create a VLAN per sub-interface.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;.&lt;sub-interface #&gt;
+</code></pre>
+<p>4). Configure encapsulation protocol (VLAN | IEEE 802.1Q), and VLAN ID.</p>
+<pre><code>encapsulation dot1Q &lt;VLAN ID [1;4094]&gt;
+</code></pre>
+<p>5). Assign a VLAN default gateway (.100 in IP's last octet).</p>
+<pre><code>ip address &lt;IP address&gt; &lt;IP address' net-mask&gt;
+</code></pre>
+<p>6). Go to main interface configuration.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;
+</code></pre>
+<p>7). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<div style='page-break-after: always'></div>
+<h2 id="switch">Switch</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Create VLANs.</p>
+<pre><code>vlan &lt;VLAN ID [1;4094]&gt;
+</code></pre>
+<p>4). Give a VLAN a name.</p>
+<pre><code>name &lt;name&gt;
+</code></pre>
+<p>5). Identify trunk ports.</p>
+<p>5.1). Get in identified trunk ports.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;
+</code></pre>
+<p>5.2). Set trunk ports.</p>
+<pre><code>switchport mode trunk
+</code></pre>
+<p>5.3). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<div style='page-break-after: always'></div>
+<p>6). Identify access ports.</p>
+<p>6.1). Get in identified access ports.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;
+</code></pre>
+<p>6.2). Set trunk ports.</p>
+<pre><code>switchport mode access
+</code></pre>
+<p>6.3). Prevent the interface from going out.</p>
+<pre><code>switchport access vlan &lt;VLAN # created&gt; 
+</code></pre>
+<p>6.4). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<h2 id="pc">PC</h2>
+<p>Configure IP address options and fields.</p>
+<div style='page-break-after: always'></div>
+<h1 id="static-routing">Static routing</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Set networks for routing.</p>
+<pre><code>ip route &lt;destination network IP&gt; &lt;network IP's net-mask&gt; &lt;next hop's IP address | inside router's interface&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="rip">RIP</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Get in RIP configuration.</p>
+<pre><code>router rip
+</code></pre>
+<p>4). Set RIP version</p>
+<pre><code>version &lt;1 | 2&gt;
+</code></pre>
+<p>5). Specify that giving networks will not be auto-summarized.</p>
+<pre><code>no auto-summary
+</code></pre>
+<p>6). Set networks for routing.</p>
+<pre><code>network &lt;network IP&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="ospf">OSPF</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Get in OSPF configuration, by assigning a process.</p>
+<pre><code>router ospf &lt;Process ID [1;65536]&gt;
+</code></pre>
+<p>4). Set networks for routing.</p>
+<pre><code>network &lt;network IP&gt; &lt;network IP's wildcard&gt; area &lt;#&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h3 id="optional">Optional</h3>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Get in an interface which has configured OSPF.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;.&lt;sub-interface #&gt;
+</code></pre>
+<p>4). Configure OSPF cost per interface.</p>
+<pre><code>ip ospf cost &lt;# of cost&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="routing-redistribution">Routing redistribution</h1>
+<h2 id="router">Router</h2>
+<h3 id="static--%22another-routing-protocol%22">Static &amp; &quot;another routing protocol&quot;</h3>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Set redistribution in order to reach convergence between both routing protocols.</p>
+<p>3.1). In case static routing wants to know &quot;another routing protocol&quot; learned routes: <em>&quot;The other&quot; goes on duty ...</em></p>
+<p>3.1.1). Get in routing protocol configuration.</p>
+<pre><code>router &lt;routing protocol&gt;
+</code></pre>
+<p>3.1.2). Establish the redistribution.</p>
+<pre><code>redistribution static metric &lt;# of routing protocol's metric&gt;
+</code></pre>
+<p>3.2). In case &quot;another routing protocol&quot; wants to know static routing learned routes: <em>&quot;The other&quot; approaches to static routing ...</em></p>
+<p>3.2.1). Get in routing protocol configuration.</p>
+<pre><code>router &lt;routing protocol&gt;
+</code></pre>
+<p>3.2.2). Establish the redistribution.</p>
+<pre><code>redistribution connected metric &lt;# of routing protocol's metric&gt;
+</code></pre>
+<h3 id="rip--ospf">RIP &amp; OSPF</h3>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Set redistribution in order to reach convergence between both routing protocols.</p>
+<p>3.1). In case RIP wants to know OSPF learned routes: <em>OSPF does the job ...</em></p>
+<p>3.1.1). Get in OSPF configuration.</p>
+<pre><code>router ospf &lt;Process ID [1;65536]&gt;
+</code></pre>
+<p>3.1.2). Establish RIP redistribution.</p>
+<pre><code>redistribution rip metric &lt;# of metric or cost&gt; subnets
+</code></pre>
+<p>3.2). In case OSPF wants to know RIP learned routes: <em>RIP does the job ...</em></p>
+<p>3.2.1). Get in RIP configuration.</p>
+<pre><code>router rip
+</code></pre>
+<p>3.2.2). Establish OSPF redistribution.</p>
+<pre><code>redistribution ospf &lt;Process ID [1;65536]&gt; metric &lt;hop-by-hop #&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="dhcp">DHCP</h1>
+<h2 id="service-device">Service device</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Establish DHCP.</p>
+<p>3.1). Get in protocol's configuration.</p>
+<pre><code>ip dhcp pool &lt;pool name string line&gt;
+</code></pre>
+<p>3.2). Set a domain name for the server device.</p>
+<p>This configuration is up to DNS resolver configuration. E.g. &quot;cisco.com&quot;.</p>
+<pre><code>domain-name &lt;DHCP server name string line&gt;
+</code></pre>
+<p>3.3). Set a network to assign dynamically IP addresses.</p>
+<pre><code>network &lt;network IP&gt; &lt;network IP's net-mask&gt;
+</code></pre>
+<p>3.4). Set a default gateway for that previous network.</p>
+<pre><code>default-router &lt;previous network's default gateway&gt;
+</code></pre>
+<p>3.5). Set a DNS server IP address.</p>
+<pre><code>dns-server &lt;DNS server's IP address&gt;
+</code></pre>
+<h2 id="router">Router</h2>
+<p>1). Establish DHCP service's IP helper address.</p>
+<p>2). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>3). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>4). Get in identified interface.</p>
+<p>The right interface (to establish an IP helper address) is the one that helps the network to find that DHCP service; its assigned IP is part of the network that does not know where is that service device.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;(.&lt;sub-interface #&gt;)
+</code></pre>
+<p>5). Set IP helper address.</p>
+<pre><code>ip helper-address &lt;DHCP service device's IP address&gt;
+</code></pre>
+<p>6). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<h2 id="pc">PC</h2>
+<p>Configure IP address options and fields.</p>
+<div style='page-break-after: always'></div>
+<h1 id="dns">DNS</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Enable DNS server configuration.</p>
+<pre><code>ip dns server
+</code></pre>
+<p>4). Enable domain lookup.</p>
+<pre><code>ip domain-lookup
+</code></pre>
+<p>5). Set a public IP address for the service.</p>
+<pre><code>ip name-server &lt;DNS' IP address&gt;
+</code></pre>
+<p>6). Configure host-names.</p>
+<pre><code>ip host &lt;host name string line&gt; &lt;host's IP address&gt;
+</code></pre>
+<h2 id="pc">PC</h2>
+<p>Configure DNS' IP address.</p>
+<div style='page-break-after: always'></div>
+<h1 id="nat">NAT</h1>
+<h2 id="inside-router"><strong>Inside</strong> Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Create a pool of public IP addresses.</p>
+<pre><code>ip nat pool &lt;pool name&gt; &lt;first IP&gt; &lt;last IP&gt; netmask &lt;net-mask&gt;
+</code></pre>
+<p>4). Assign a pool to an access-list.</p>
+<pre><code>ip nat inside source list &lt;[1;99] for basic lists | [100;199] for extended lists&gt; pool &lt;pool name&gt; overload
+</code></pre>
+<p>5). Check if it is necessary to use static NAT configuration.</p>
+<p>5.1). Directly associate a private IP with a public IP (registered in NAT's pool).</p>
+<pre><code>ip nat inside source static &lt;private IP&gt; &lt;public IP&gt;
+</code></pre>
+<p>6). Configure an access-list for private IP addresses.</p>
+<pre><code>access-list &lt;list #&gt; permit &lt;network IP&gt; &lt;network IP's wildcard&gt;
+</code></pre>
+<p>7). Identify inside or outside interfaces.</p>
+<p>7.1). Get in identified interface.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;(.&lt;sub-interface #&gt;)
+</code></pre>
+<p>7.2). Define the role of the port in the NAT configuration.</p>
+<pre><code>ip nat &lt;inside | outside&gt;
+</code></pre>
+<p>7.3). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<p>8). Define a by default static route.</p>
+<pre><code>ip route 0.0.0.0 0.0.0.0 &lt;next hop's IP address | inside router's interface&gt;
+</code></pre>
+<h2 id="outside-router"><strong>Outside</strong> Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Configure static routing for public IP addresses pool.</p>
+<pre><code>ip route &lt;destination network IP&gt; &lt;network IP's net-mask&gt; &lt;next hop's IP address | inside router's interface&gt;
+</code></pre>
+<p>4). Redistribute learned addresses (from static to another routing protocol).</p>
+<p>4.1). Get in routing protocol configuration.</p>
+<pre><code>router &lt;routing protocol&gt;
+</code></pre>
+<p>4.2). Establish the redistribution.</p>
+<pre><code>redistribution static metric &lt;# of routing protocol's metric&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="acl">ACL</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Create an access list.</p>
+<p>3.1). Create a basic access list.</p>
+<pre><code>access-list &lt;ID # [1;99]&gt; &lt;options&gt; &lt;Source's IP address&gt; &lt;Source's wildcard of IP address&gt;
+</code></pre>
+<p>3.2). Create a extended access list.</p>
+<pre><code>access-list &lt;ID # [100;199]&gt; &lt;options&gt; &lt;protocol&gt; &lt;Source's IP address&gt; &lt;Source's wildcard of IP address&gt; (eq &lt;port&gt;) &lt;Destination's IP address&gt; &lt;Destination's wildcard of IP address&gt; (eq &lt;port&gt;)
+</code></pre>
+<div style='page-break-after: always'></div>
+<p>4). Assign an access list to a port.</p>
+<p>4.1). Get in interface configuration.</p>
+<pre><code>interface &lt;technology&gt; &lt;interface #&gt;(.&lt;sub-interface #&gt;)
+</code></pre>
+<p>4.1.1). Apply access list from inside network to outside network traffic.</p>
+<pre><code>ip access-group &lt;ID #&gt; in
+</code></pre>
+<p>4.1.2). Apply access list from outside network to inside network traffic.</p>
+<pre><code>ip access-group &lt;ID #&gt; out
+</code></pre>
+<p>4.2). Prevent the interface from going out.</p>
+<pre><code>no shutdown
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="ftp-client">FTP client</h1>
+<h2 id="pc">PC</h2>
+<p>1). Establish FTP connection.</p>
+<p>1.1). Get in server access.</p>
+<pre><code>ftp &lt;FTP server's IP address&gt;
+</code></pre>
+<p>1.2). Validate secure device features through FTP credentials.</p>
+<p><u>Username:</u></p>
+<pre><code>&lt;FTP username set on server&gt;
+</code></pre>
+<p><u>Password:</u></p>
+<pre><code>&lt;FTP password set on server&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="vty">VTY</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>3). Establish VTY.</p>
+<p>3.1). Get in VTY configuration.</p>
+<pre><code>line vty &lt;minimum # of lines [0;15]&gt; &lt;maximum # of lines [0;15]&gt;
+</code></pre>
+<p>3.2). Set password settings.</p>
+<p>3.2.1). Set no password.</p>
+<pre><code>no password
+</code></pre>
+<p>3.2.2). Set password.</p>
+<pre><code>password &lt;password string line&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<p>3.3). Set login settings with VTY credentials, with no extra options.</p>
+<p>3.3.1). Set no login.</p>
+<pre><code>no login
+</code></pre>
+<p>3.3.2). Set login.</p>
+<pre><code>login
+</code></pre>
+<p>4). Get in interface configuration.</p>
+<pre><code>interface loopback &lt;interface #&gt;
+</code></pre>
+<p>It is possible to choose another technology. However, since VTY is a virtual terminal protocol, then it is profitable to use a virtual interface also; in order to leverage other routes which support the connection.</p>
+<p>4.1). Add an IP address to a loopback interface.</p>
+<pre><code>ip address &lt;IP address&gt; &lt;IP address' net-mask&gt;
+</code></pre>
+<p>*). It is not necessary to prevent the interface from going out, because it is a virtual interface. If the device is on, its virtual interfaces too.</p>
+<p>5). Define password configuration for the device.</p>
+<pre><code>enable secret (&lt;options&gt;) &lt;password string line&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h2 id="pc">PC</h2>
+<p>1). Establish VTY connection.</p>
+<p>1.1). Get in router access.</p>
+<pre><code>telnet &lt;Loop-back IP address&gt;
+</code></pre>
+<p>1.2). Validate secure protocol communication.</p>
+<p><u>Password:</u></p>
+<pre><code>&lt;VTY password set on router&gt;
+</code></pre>
+<p>1.3). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>1.4). Validate secure device features.</p>
+<p><u>Password:</u></p>
+<pre><code>&lt;device secret password set on router&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<h1 id="ssh">SSH</h1>
+<h2 id="router">Router</h2>
+<p>1). Get in enable configuration.</p>
+<pre><code>enable
+</code></pre>
+<p>2). Get in configuration terminal.</p>
+<pre><code>configure terminal
+</code></pre>
+<p>4). Set a different host name. -Mandatory-</p>
+<pre><code>hostname &lt;host name string line&gt;
+</code></pre>
+<p>5). Set a domain name for the SSH server.</p>
+<p>This configuration is up to DNS resolver configuration. E.g. &quot;cisco.com&quot;.</p>
+<pre><code>ip domain-name &lt;SSH server name string line&gt;
+</code></pre>
+<p>6). Define username and password configuration for the device.</p>
+<pre><code>username &lt;username string line&gt; privilege &lt;user privilege level #&gt; secret (&lt;options&gt;) &lt;password string line&gt;
+</code></pre>
+<div style='page-break-after: always'></div>
+<p>7). Define security keys.</p>
+<pre><code>crypto key generate rsa
+</code></pre>
+<p><u>Do you really want to replace them?:</u></p>
+<pre><code>yes
+</code></pre>
+<p><u>How many bits in the modulus:</u></p>
+<pre><code>&lt;[360;2048]&gt;
+</code></pre>
+<p>8). Set SSH version.</p>
+<pre><code>ip ssh version 2
+</code></pre>
+<p>9). Define SSH through VTY.</p>
+<p>9.1). Get in VTY configuration.</p>
+<pre><code>line vty &lt;minimum # of lines [0;15]&gt; &lt;maximum # of lines [0;15]&gt;
+</code></pre>
+<p>9.1.1). Define what protocol is used through VTY.</p>
+<pre><code>transport input ssh
+</code></pre>
+<p>9.1.2). Set login settings for local authentication (with router's credentials).</p>
+<pre><code>login local
+</code></pre>
+<div style='page-break-after: always'></div>
+<p>10). Get in interface configuration.</p>
+<pre><code>interface loopback &lt;interface #&gt;
+</code></pre>
+<p>It is possible to choose another technology. However, since VTY is a virtual terminal protocol, then it is profitable to use a virtual interface also; in order to leverage other routes which support the connection.</p>
+<p>10.1). Add an IP address to a loopback interface.</p>
+<pre><code>ip address &lt;IP address&gt; &lt;IP address' net-mask&gt;
+</code></pre>
+<p>*). It is not necessary to prevent the interface from going out, because it is a virtual interface. If the device is on, its virtual interfaces too.</p>
+<h2 id="pc">PC</h2>
+<p>1). Establish SSH connection.</p>
+<p>1.1). Get in router access.</p>
+<pre><code>ssh -l &lt;Router's host-name&gt; &lt;Loop-back IP address&gt;
+</code></pre>
+<p>1.2). Validate secure device features.</p>
+<p><u>Password:</u></p>
+<pre><code>&lt;device secret password set on router&gt;
+</code></pre>
+
+</body>
+</html>

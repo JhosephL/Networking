@@ -1,9 +1,127 @@
 
+
+
+[comment]: <> (HTML Specifications for PDF exportation)
+
+
+
+<head>
+    <style>
+        h1 {
+            font-weight: bold;
+        }
+        h2 {
+            font-weight: 700;
+        }
+        h3 {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+
+
+[comment]: <> (BEGINNING OF MD FILE)
+
+
+
 <br>
 <h1 align="center">
     CISCO COMMANDS
 </h1>
 <br>
+
+
+
+# IP
+
+
+## Router
+
+1). Get in enable configuration.
+
+    enable
+
+2). Get in configuration terminal.
+
+    configure terminal
+    
+3). Create a VLAN per sub-interface.
+
+    interface <technology> <interface #>
+    
+4). Assign an IP address.
+
+    ip address <IP address> <IP address' net-mask>
+    
+5). Prevent the interface from going out.
+
+    no shutdown
+
+
+
+<div style='page-break-after: always'></div>
+
+
+
+# VTP
+
+
+## Switch server
+
+1). Get in enable configuration.
+
+    enable
+
+2). Get in configuration terminal.
+
+    configure terminal
+
+3). Configure VTP mode.
+
+    vtp mode server
+
+4). Configure VTP domain.
+
+    vtp domain <domain's name>
+
+### Optional
+
+*). Configure VTP password.
+
+    vtp password <password string line>
+
+
+<div style='page-break-after: always'></div>
+
+
+## Switch client
+
+1). Get in enable configuration.
+
+    enable
+
+2). Get in configuration terminal.
+
+    configure terminal
+
+3). Configure VTP mode.
+
+    vtp mode client
+
+4). Configure VTP domain.
+
+    vtp domain <domain's name>
+
+### Optional
+
+*). Configure VTP password.
+
+    vtp password <password string line>
+
+
+
+<div style='page-break-after: always'></div>
 
 
 
@@ -39,7 +157,10 @@
 7). Prevent the interface from going out.
 
     no shutdown
-    
+
+
+<div style='page-break-after: always'></div>
+
 
 ## Switch
 
@@ -73,6 +194,8 @@
 
     no shutdown
     
+<div style='page-break-after: always'></div>
+
 6). Identify access ports.
 
 6.1). Get in identified access ports.
@@ -181,6 +304,8 @@ Configure IP address options and fields.
 
     network <network IP> <network IP's wildcard> area <#>
     
+<div style='page-break-after: always'></div>
+
 ### Optional
 
 1). Get in enable configuration.
@@ -499,6 +624,8 @@ Configure DNS' IP address.
 3.2). Create a extended access list.
 
     access-list <ID # [100;199]> <options> <protocol> <Source's IP address> <Source's wildcard of IP address> (eq <port>) <Destination's IP address> <Destination's wildcard of IP address> (eq <port>)
+
+<div style='page-break-after: always'></div>
     
 4). Assign an access list to a port.
 
@@ -509,7 +636,7 @@ Configure DNS' IP address.
 4.1.1). Apply access list from inside network to outside network traffic.
 
     ip access-group <ID #> in
-    
+
 4.1.2). Apply access list from outside network to inside network traffic.
 
     ip access-group <ID #> out
@@ -579,6 +706,8 @@ Configure DNS' IP address.
 3.2.2). Set password.
 
     password <password string line>
+
+<div style='page-break-after: always'></div>
     
 3.3). Set login settings with VTY credentials, with no extra options.
 
@@ -605,6 +734,9 @@ It is possible to choose another technology. However, since VTY is a virtual ter
 5). Define password configuration for the device.
 
     enable secret (<options>) <password string line>
+
+
+<div style='page-break-after: always'></div>
 
 
 ## PC
@@ -664,6 +796,8 @@ This configuration is up to DNS resolver configuration. E.g. "cisco.com".
 
     username <username string line> privilege <user privilege level #> secret (<options>) <password string line>
     
+<div style='page-break-after: always'></div>
+
 7). Define security keys.
 
     crypto key generate rsa
@@ -694,6 +828,8 @@ This configuration is up to DNS resolver configuration. E.g. "cisco.com".
 
     login local
 
+<div style='page-break-after: always'></div>
+
 10). Get in interface configuration.
 
     interface loopback <interface #>
@@ -720,3 +856,4 @@ It is possible to choose another technology. However, since VTY is a virtual ter
 <u>Password:</u>
 
     <device secret password set on router>
+
